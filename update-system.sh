@@ -138,26 +138,6 @@ function update()
 
     clear_Screen
 
-    # This will udate yay packages
-    update_yay
-
-    clear_Screen
- 
-    # This will update paru packeages
-    update_paru
-    
-    clear_Screen
- 
-    #This will update pip packages 
-    update_pip
-
-    clear_Screen
- 
-    # This will update conda packages
-    update_conda
-
-    clear_Screen
-
     # for more packages to install or update then creata a function.
     # enter the command into the function. 
 }
@@ -181,7 +161,7 @@ function startup()
 {
     
     # Giving the sudo privileges
-    # remove_sudo
+    remove_sudo
     
     # check root privileges
     root
