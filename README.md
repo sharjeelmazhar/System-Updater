@@ -25,7 +25,9 @@ https://github.com/sharjeelmazhar/update-system-script.git
 Once the project is only Your system then open a terminal and run this script as a user to do that enter the following command into the terminal.
 
 ```bash
-./update-system.sh
+./install.sh
 ```
 
 Then system will update all of the packages one by one.
+
+Once the packages are installed the script will say a good Bye Message.
