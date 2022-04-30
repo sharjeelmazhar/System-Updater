@@ -1,38 +1,9 @@
 #!/bin/bash
 
+# This will import the check Os file
 . check-os.sh
 
 
-
-# This will add sudo privileges to the normal user so that the user can update the system without entering the password.
-function remove_sudo() 
-{
-    # Add sudo no password rights
-    sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
-    sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
-}
-
-# this funtion will clear the screen 
-function clear_Screen() 
-{
-    clear
-}
-
-# This function will check with package manager your are running
-function check_OS() 
-{
-    if [[ "$package_manager" == "pacman" ]];
-    then
-        # run-Terminal
-        update
-    elif [[ "$package_manager" == "apt-get" ]];
-    then
-            debian_update
-    else
-        echo 'Error Occured: ${package_manager}'
-        exit 0
-    fi
-}
 
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
@@ -57,6 +28,32 @@ function root()
     fi
 }
 
+#   echo '############################################################################### '
+#   echo '#                                                                             # '
+#   echo '#        ####    Section: Sudo Privillages to the user    #####               # '
+#   echo '#                                                                             # '
+#   echo '############################################################################### '
+
+# This will add sudo privileges to the normal user so that the user can update the system without entering the password.
+function remove_sudo() 
+{
+    # Add sudo no password rights
+    sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
+    sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
+}
+
+#   echo '############################################################################### '
+#   echo '#                                                                             # '
+#   echo '#             ####    Section: Clear terminal             #####               # '
+#   echo '#                                                                             # '
+#   echo '############################################################################### '
+
+# this funtion will clear the screen 
+function clear_Screen() 
+{
+    clear
+}
+
 
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
@@ -76,12 +73,36 @@ function run-Terminal()
     clear_Screen
 }
 
+
+#   echo '############################################################################### '
+#   echo '#                                                                             # '
+#   echo '#             ####    Section: Which Os you are running       #####           # '
+#   echo '#                                                                             # '
+#   echo '############################################################################### '
+
+# This function will check with package manager your are running
+function check_OS() 
+{
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        # run-Terminal
+        update
+    elif [[ "$package_manager" == "apt-get" ]];
+    then
+            debian_update
+    else
+        echo 'Error Occured: ${package_manager}'
+        exit 0
+    fi
+}
+
+#  ------------------------------------------Debian Update Section-----------------------------------------------------------------# 
+
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
 #   echo '#     ####   Section: Update System Section for Debian System   #####         # '
 #   echo '#                                                                             # '
 #   echo '############################################################################### '
-
 
 # Update system for debian_update
 function debian_update() 
@@ -117,12 +138,23 @@ function debian_update()
 "    
 }
 
+# ------------------------------------------Arch System Update----------------------------------------------------------------------------------------------#
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                               Logic of Arch Update system      
+# For arch system there are two ways to update and upgrade packages the pacman Repo and the Aur Repo   
+# So The scrip is divided into two parts the root run part and the simple user part. 
+# Each part of the script will  be executed one by one nothing will skipped.
+# Root Side: Pacman Packages
+# User Side: Paru, Yay or pip or Conda environment 
+# The user side does not required the sudo privileges so they are seperated from the sudo script and did not disturb the sudo privileges section. 
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------#
+
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
 #   echo '#     ####   Section: Update System Section for Arch System   #####           # '
 #   echo '#                                                                             # '
 #   echo '############################################################################### '
-
 
 # This is main update function for the arch system .
 # This function will update the system 
@@ -155,6 +187,11 @@ function update_pacman()
 
 }
 
+#   echo '############################################################################### '
+#   echo '#                                                                             # '
+#   echo '#     ####   Section: Running part of the script or Main function   ####      # '
+#   echo '#                                                                             # '
+#   echo '############################################################################### '
 
 # This is the unning function.
 function startup() 
