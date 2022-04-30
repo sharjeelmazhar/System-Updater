@@ -41,7 +41,7 @@ function non-root()
 -------------------------------------------------------------------------
           This script shouldn't be run as root. ☹️🙁
 
-          Run script like this:-  ./update-system.sh
+          Run script like this:-  ./install.sh
 -------------------------------------------------------------------------
 "
         exit 1
@@ -71,13 +71,13 @@ function good-bye()
 
 function give-permissions() 
 {
-    chmod +x update-system.sh
+    chmod +x root-update.sh
     chmod +x non-root-update.sh
     chmod +x check-os.sh
 }
 function remove-permissions() 
 {
-    chmod -x update-system.sh
+    chmod -x root-update.sh
     chmod -x non-root-update.sh
     chmod -x check-os.sh
 }
@@ -100,7 +100,7 @@ function run_file()
 }
 function script-arch()
 {
-    sudo ./update-system.sh
+    sudo ./root-update.sh
     ./non-root-update.sh
     echo -ne "
 -------------------------------------------------------------------------
@@ -110,7 +110,12 @@ function script-arch()
 }
 function script-debian() 
 {
-    sudo ./update-system.sh
+    sudo ./root-update.sh
+    echo -ne "
+-------------------------------------------------------------------------
+    All Packages have been updated !! ✨ Congratulation ✨    
+-------------------------------------------------------------------------
+" 
 }
 # This is the unning function.
 function beginning() 
