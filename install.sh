@@ -109,12 +109,7 @@ function script-arch()
 }
 function script-debian() 
 {
-    sudo ./root-update.sh
-    echo -ne "
--------------------------------------------------------------------------
-    All Packages have been updated !! ✨ Congratulation ✨    
--------------------------------------------------------------------------
-" 
+    sudo ./root-update.sh 
 }
 # This is the unning function.
 function beginning() 
