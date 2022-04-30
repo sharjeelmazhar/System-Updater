@@ -140,8 +140,8 @@ function debian_update()
 
 # ------------------------------------------Arch System Update----------------------------------------------------------------------------------------------#
 
-# ----------------------------------------------------------------------------------------------------------------------------------------------------------#
-#                                               Logic of Arch Update system      
+#----------------------------------------Logic of Arch Update system-----------------------------------------------------------------------------------#      
+
 # For arch system there are two ways to update and upgrade packages the pacman Repo and the Aur Repo   
 # So The scrip is divided into two parts the root run part and the simple user part. 
 # Each part of the script will  be executed one by one nothing will skipped.
@@ -149,6 +149,10 @@ function debian_update()
 # User Side: Paru, Yay or pip or Conda environment 
 # The user side does not required the sudo privileges so they are seperated from the sudo script and did not disturb the sudo privileges section. 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
+#----------------------------------------Root Bases Pacman Update-----------------------------------------------------------------------------------#      
+
 
 #   echo '############################################################################### '
 #   echo '#                                                                             # '

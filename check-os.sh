@@ -1,3 +1,12 @@
+#!/bin/bash
+
+#   echo '############################################################################### '
+#   echo '#                                                                             # '
+#   echo '#     ####   Info: This script will check which Os you are running  ####      # '
+#   echo '#                                                                             # '
+#   echo '############################################################################### '
+
+
 # This will check which package manager your are running 
 declare -A osInfo;
 osInfo[/etc/debian_version]="apt-get"

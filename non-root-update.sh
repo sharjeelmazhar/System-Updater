@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# ---------------------------Location of yay and Paru-------------------------------------------#
+
 #Location for the yay on the arch system
 YAY_LOCATION=/usr/bin/yay
 
@@ -29,10 +31,26 @@ function non-root()
         exit 1
     fi
 }
+
+#   echo '############################################################################### '
+#   echo '#                                                                             # '
+#   echo '#             ####    Section: Clear terminal             #####               # '
+#   echo '#                                                                             # '
+#   echo '############################################################################### '
+
+# this funtion will clear the screen 
 function wipe() 
 {
     clear
 }
+# -------------------------------------User Update Aur Update-----------------------------------------------------------------------------------#
+
+#   echo '############################################################################### '
+#   echo '#                                                                             # '
+#   echo '#   ####    Section: AUR, Conda Enironment & Pip packages update    #####     # '
+#   echo '#                                                                             # '
+#   echo '############################################################################### '
+
 function update-Aur() 
 {
     wipe
@@ -106,6 +124,11 @@ function update_yay()
     fi
 }
 
+#   echo '############################################################################### '
+#   echo '#                                                                             # '
+#   echo '#     ####   Section: Running part of the script or Main function   ####      # '
+#   echo '#                                                                             # '
+#   echo '############################################################################### '
 
 # This is the main running Section
 function runner() 
