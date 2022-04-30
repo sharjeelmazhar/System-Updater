@@ -17,6 +17,14 @@ do
     fi
 done
 
+#Location for the yay on the arch system
+YAY_LOCATION=/usr/bin/yay
+
+#location of paru
+PARU_LOCATION=/usr/bin/paru
+
+
+
 # This function display the Welcome Message
 function welcome-Message() 
 {
@@ -28,8 +36,8 @@ function welcome-Message()
             GitHub: sharjeelmazhar & rafay99-epic
 -------------------------------------------------------------------------
 "
-
 }
+
 # this funtion will clear the screen 
 function clear_Screen() 
 {
@@ -67,32 +75,98 @@ function run-Terminal()
     # alacritty -noclose -- 'sudo pacman -Syyu --noconfirm --needed'
     clear_Screen
 }
-
-# This function will update the system 
-function update()
+function update_paru()
 {
+    if [ ! -e "$PARU_LOCATION" ]; 
+    then
+        echo 'Paru is not Installed on this System'
+    else
         echo -ne "
 -------------------------------------------------------------------------
-            Arch System is Detected
+            Updating Paru Packages
 -------------------------------------------------------------------------
-"  
+"    
+        paru -Syyu --noconfirm --needed
+    fi
+}
+function update_yay()
+{
+    if [ ! -e "$YAY_LOCATION" ]; 
+    then
+        echo 'yay is not installed on this system'
+    else  
         echo -ne "
--------------------------------------------------------------------------
-            Updating Pacman Packages
--------------------------------------------------------------------------
-" 
-    #Updating the pacman Pacages  
-    sudo pacman -Syyu --noconfirm --needed
-    clear_Screen
-    echo -ne "
 -------------------------------------------------------------------------
             Updating yay Packages
 -------------------------------------------------------------------------
 "  
     #Updating the yay Packages  
     yay -Syyu --noconfirm --needed
+    fi
+}
+function update_pacman() 
+{
+    echo -ne "
+-------------------------------------------------------------------------
+            Updating Pacman Packages
+-------------------------------------------------------------------------
+" 
+    #Updating the pacman Pacages  
+    sudo pacman -Syyu --noconfirm --needed
+
+}
+function update_pip()
+{
+    echo -ne "
+-------------------------------------------------------------------------
+            Updating Pip Packages
+-------------------------------------------------------------------------
+"
+    pip list --outdated --format=freeze | awk -F"==" '{print $1}' | xargs -i pip install -U {}
+
+}
+function update_conda() 
+{
+    echo -ne "
+-------------------------------------------------------------------------
+            Updating Conda Packages
+-------------------------------------------------------------------------
+"
+    conda update --all
+}
+# This function will update the system 
+function update()
+{
+    echo -ne "
+-------------------------------------------------------------------------
+            Arch System is Detected
+-------------------------------------------------------------------------
+"  
+    # This will update pacman packages
+    update_pacman
 
     clear_Screen
+
+    # This will udate yay packages
+    update_yay
+
+    clear_Screen
+ 
+    # This will update paru packeages
+    update_paru
+    
+    clear_Screen
+ 
+    #This will update pip packages 
+    update_pip
+
+    clear_Screen
+ 
+    # This will update conda packages
+    update_conda
+
+    clear_Screen
+
     echo -ne "
 -------------------------------------------------------------------------
     All Packages have been updated !! ✨ Congratulation ✨    
@@ -115,8 +189,6 @@ function good-bye()
 # this function will make sure that the script will run as the normal user
 function non-root() 
 {
-    clear_Screen
-
     if [ "$USER" = root ]; then
         echo -ne "
 -------------------------------------------------------------------------
@@ -128,12 +200,21 @@ function non-root()
         exit 1
     fi
 }
-
+function remove_sudo() 
+{
+    # Add sudo no password rights
+    sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
+    sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /etc/sudoers
+}
 # This is the unning function.
 function startup() 
 {
+    
     # this will clear the screen once script is runned
     clear_Screen
+
+    # Giving the sudo privileges
+    remove_sudo
     
     # Welcome Message Function
     welcome-Message
