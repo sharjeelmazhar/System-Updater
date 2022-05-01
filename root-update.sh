@@ -3,12 +3,6 @@
 # This will import the check Os file
 . check-os.sh
 
-
-
-
-#  
-
-
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
 #   echo '#             ####    Section: Root Section Section       #####               # '
