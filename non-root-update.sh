@@ -89,7 +89,7 @@ function update_conda()
             Updating Conda Packages
 -------------------------------------------------------------------------
 "
-    alacritty --command conda update --all
+    alacritty --command conda update --all --y
 }
 
 # this will update the paru packages

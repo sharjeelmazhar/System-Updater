@@ -89,7 +89,7 @@ function update_conda()
             Updating Conda Packages
 -------------------------------------------------------------------------
 "
-     conda update --all
+     conda update --all --y
 }
 
 # this will update the paru packages
