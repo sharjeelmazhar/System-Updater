@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+# Location of alacritty
+ALACRITTY_LOCATION=/usr/bin/alacritty
+
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
 #   echo '#             ####     Section: Welcome Section   #####                       # '
@@ -48,6 +52,22 @@ function non-root()
     fi
 }
 
+function check-Terminal()
+{
+    if [ ! -e "$ALACRITTY_LOCATION" ]; 
+    then
+        echo -ne "
+-------------------------------------------------------------------------
+         Alacritty Terminal is Not Installed!! 
+
+         Sorry!! Please Install The Terminal 
+-------------------------------------------------------------------------
+"
+        remove-permissions
+        good-bye
+        exit 1
+    fi
+}
 
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
@@ -127,6 +147,9 @@ function beginning()
     # giving permisions to the files
     give-permissions
     
+    # This will check the terminal
+    check-Terminal
+
     # Runnning the Files
     run_file
 

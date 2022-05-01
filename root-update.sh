@@ -5,6 +5,10 @@
 
 
 
+
+#  
+
+
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
 #   echo '#             ####    Section: Root Section Section       #####               # '
@@ -21,7 +25,7 @@ function root()
 -------------------------------------------------------------------------
            This script shouldn be run as root. ☹️🙁
 
-           Run script like this:-  ./update-system.sh
+           Run script like this:-  ./root-update.sh
 -------------------------------------------------------------------------
  "
         exit 1
@@ -64,11 +68,7 @@ function clear_Screen()
 # This function will open terminal 
 function run-Terminal() 
 {
-        echo -ne "
--------------------------------------------------------------------------
-        Opening Terminal
--------------------------------------------------------------------------
-"  
+    
     # alacritty -noclose -- 'sudo pacman -Syyu --noconfirm --needed'
     clear_Screen
 }
@@ -117,7 +117,7 @@ function debian_update()
             Updating System Packages
 -------------------------------------------------------------------------
 "
-    sudo apt-get update -y 
+    alacritty --command sudo apt-get update -y 
     
     clear_Screen
     
@@ -126,8 +126,7 @@ function debian_update()
             Upgrading System Packages
 -------------------------------------------------------------------------
 "
-    sudo apt upgrade -y 
-
+    alacritty --command sudo apt upgrade -y 
 
     # For more package to update add here 
   
@@ -187,7 +186,7 @@ function update_pacman()
 -------------------------------------------------------------------------
 " 
     #Updating the pacman Pacages  
-    sudo pacman -Syyu --noconfirm --needed
+    alacritty --command sudo pacman -Syyu --noconfirm --needed
 
 }
 

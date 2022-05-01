@@ -1,0 +1,24 @@
+#!/bin/bash
+
+
+# Location of alacritty
+ALACRITTY_LOCATION=/usr/bin/alacritty
+
+
+
+function check-Terminal()
+{
+    if [ ! -e "$ALACRITTY_LOCATION" ]; 
+    then
+        echo -ne "
+-------------------------------------------------------------------------
+         Alacritty Terminal is Not Installed!! 
+
+         Sorry!! Please Install The Terminal 
+-------------------------------------------------------------------------
+"
+    # good-bye
+    exit 1
+    fi
+}
+check-Terminal
