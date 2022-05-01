@@ -3,12 +3,6 @@
 # This will import the check Os file
 . check-os.sh
 
-
-
-
-#  
-
-
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
 #   echo '#             ####    Section: Root Section Section       #####               # '
@@ -58,22 +52,6 @@ function clear_Screen()
     clear
 }
 
-
-# #   echo '############################################################################### '
-# #   echo '#                                                                             # '
-# #   echo '#             ####    Section: Run Terminal Section   #####                   # '
-# #   echo '#                                                                             # '
-# #   echo '############################################################################### '
-
-# # This function will open terminal 
-# function run-Terminal() 
-# {
-    
-#     # alacritty -noclose -- 'sudo pacman -Syyu --noconfirm --needed'
-#     clear_Screen
-# }
-
-
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
 #   echo '#             ####    Section: Which Os you are running       #####           # '
@@ -85,7 +63,6 @@ function check_OS()
 {
     if [[ "$package_manager" == "pacman" ]];
     then
-        # run-Terminal
         update
     elif [[ "$package_manager" == "apt-get" ]];
     then
