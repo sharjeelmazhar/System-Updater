@@ -63,11 +63,11 @@ function update-Aur()
 
     wipe
     # updating all of the python Packages
-    # update_pip
+     update_pip
 
     wipe
     # Updating all of the conda packages
-    # update_conda
+     update_conda
 }
 
 # this will update the pip packages aka python packages
