@@ -1,25 +1,63 @@
 # Introduction:
 
-In this repo we are providing a script hat will update your arch based system with just one command. Not just your arch packages but packages from AUR(Arch User Repo ) as well.
+In this version of the application we are adding the detection of alacrity terminal other terminal as well.
 
-# System Updater:
+# Versions:
 
-When you run this script the following things will updated and upgraded.
+## Previous Version:
 
-1. Pacman 
-2. Yay 
-3. Paru
-4. Python Packages
-5. Conda Environment.
+In the Previous Version of the application the script will only update the system once launched no regards to the checking of the alacrity terminal, 
 
-All of the packages will be updated and upgraded.
+## New Version:
+
+In this Version the script will detect the alacrity terminal and if present the system update will occur through the alacrity Terminal.   
+
+In this version there are two parts of the script.
+
+1. Root Version
+2. Non Root Version 
+
+The root version required the root privileges where as the Non root version required user privileges. 
+
+## Detection of Package Manager:
+
+In this the script will detect the package manager and once detected then the command for the package manager will be executed.
+
+The supported Package managers are
+
+1. Arch System or Arch Based System 
+2. Debian System or Debian Based System.
 
 # Installment Guide:
+
+## Requirement:
+
+For the cloning of the project we need git only. To install git enter the following command.
+
+**Arch Linux:**
+
+```jsx
+sudo pacman -S git --noconfirm --needed
+```
+
+**Debian Linux:**
+
+```jsx
+sudo apt-get install git -y
+```
+
+Once Installed then clone the project.
 
 In order to run the script you must clone this project.
 
 ```bash
 https://github.com/sharjeelmazhar/update-system-script.git
+```
+
+Once the Project is cloned then enter the directory
+
+```jsx
+cd System-Updater
 ```
 
 Once the project is only Your system then open a terminal and run this script as a user to do that enter the following command into the terminal.
