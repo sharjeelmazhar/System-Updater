@@ -59,13 +59,11 @@ function check-Terminal()
         echo -ne "
 -------------------------------------------------------------------------
          Alacritty Terminal is Not Installed!! 
-
-         Sorry!! Please Install The Terminal 
 -------------------------------------------------------------------------
 "
-        remove-permissions
-        good-bye
-        exit 1
+        run_Os_type       
+    else
+        run_file
     fi
 }
 
@@ -88,17 +86,49 @@ function good-bye()
 "
 }
 
+function run_Os_type()
+{
+    # importing check-os File
+    . check-os.sh
+
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        arch-nonalacritty-termnal
+    elif [[ "$package_manager" == "apt-get" ]];
+    then
+        debian-nonalacritty-termnal
+    else
+        echo 'Error Occured: ${package_manager}'
+        exit 0
+    fi   
+}
+
+function arch-nonalacritty-termnal() 
+{
+    sudo ./root-non-alacritty-termnal.sh
+    ./nonroot-non-alacritty-terminal.sh
+}
+function debian-nonalacritty-termnal()
+{
+    sudo ./root-non-alacritty-termnal.sh
+}
+
 function give-permissions() 
 {
     chmod +x root-update.sh
     chmod +x non-root-update.sh
     chmod +x check-os.sh
+    chmod +x nonroot-non-alacritty-terminal.sh
+    chmod +x root-non-alacritty-termnal.sh
+
 }
 function remove-permissions() 
 {
     chmod -x root-update.sh
     chmod -x non-root-update.sh
     chmod -x check-os.sh
+    chmod -x nonroot-non-alacritty-terminal.sh
+    chmod -x root-non-alacritty-termnal.sh
 }
 function run_file()
 {
@@ -151,7 +181,7 @@ function beginning()
     check-Terminal
 
     # Runnning the Files
-    run_file
+    # run_file
 
     # Removing the permission from the files
     remove-permissions
