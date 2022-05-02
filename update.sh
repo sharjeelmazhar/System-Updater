@@ -1,9 +1,5 @@
 #!/bin/bash
 
-
-# Location of alacritty
-ALACRITTY_LOCATION=/usr/bin/alacritty
-
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
 #   echo '#             ####     Section: Welcome Section   #####                       # '
@@ -16,10 +12,11 @@ function welcome-Message()
 {
     echo -ne "
 -------------------------------------------------------------------------
-            Welcome to System Updater
+                    Welcome to System Updater
 
-            Author: Sharjeel Mazhar & Abdul Rafay
-            GitHub: sharjeelmazhar & rafay99-epic
+                    Author:  Abdul Rafay
+                    Email: 99marafay@gmail.com
+                    GitHub:  rafay99-epic
 -------------------------------------------------------------------------
 "
 }
@@ -52,21 +49,6 @@ function non-root()
     fi
 }
 
-function check-Terminal()
-{
-    if [ ! -e "$ALACRITTY_LOCATION" ]; 
-    then
-        echo -ne "
--------------------------------------------------------------------------
-         Alacritty Terminal is Not Installed!! 
--------------------------------------------------------------------------
-"
-        run_Os_type       
-    else
-        run_file
-    fi
-}
-
 #   echo '############################################################################### '
 #   echo '#                                                                             # '
 #   echo '#             ####     Section: Good-Bye Section   #####                      # '
@@ -81,36 +63,9 @@ function good-bye()
         Thank Your using our Script!!
         Have a Good Day 🙂😊
 
-        Regards Sharjeel Mazhar & Abdul Rafay
+        Regards: Abdul Rafay
 -------------------------------------------------------------------------
 "
-}
-
-function run_Os_type()
-{
-    # importing check-os File
-    . check-os.sh
-
-    if [[ "$package_manager" == "pacman" ]];
-    then
-        arch-nonalacritty-termnal
-    elif [[ "$package_manager" == "apt-get" ]];
-    then
-        debian-nonalacritty-termnal
-    else
-        echo 'Error Occured: ${package_manager}'
-        exit 0
-    fi   
-}
-
-function arch-nonalacritty-termnal() 
-{
-    sudo ./root-non-alacritty-termnal.sh
-    ./nonroot-non-alacritty-terminal.sh
-}
-function debian-nonalacritty-termnal()
-{
-    sudo ./root-non-alacritty-termnal.sh
 }
 
 function give-permissions() 
@@ -118,18 +73,15 @@ function give-permissions()
     chmod +x root-update.sh
     chmod +x non-root-update.sh
     chmod +x check-os.sh
-    chmod +x nonroot-non-alacritty-terminal.sh
-    chmod +x root-non-alacritty-termnal.sh
-
 }
+
 function remove-permissions() 
 {
     chmod -x root-update.sh
     chmod -x non-root-update.sh
     chmod -x check-os.sh
-    chmod -x nonroot-non-alacritty-terminal.sh
-    chmod -x root-non-alacritty-termnal.sh
 }
+
 function run_file()
 {
     # importing check-os File
@@ -177,11 +129,8 @@ function beginning()
     # giving permisions to the files
     give-permissions
     
-    # This will check the terminal
-    check-Terminal
-
     # Runnning the Files
-    # run_file
+    run_file
 
     # Removing the permission from the files
     remove-permissions

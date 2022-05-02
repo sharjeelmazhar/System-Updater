@@ -61,26 +61,10 @@ function update-Aur()
     # updating paru packages
     update_paru
 
-    wipe
-    # updating all of the python Packages
-     update_pip
-
-    wipe
     # Updating all of the conda packages
-    update_conda
+    # update_conda
 }
 
-# this will update the pip packages aka python packages
-function update_pip()
-{
-    echo -ne "
--------------------------------------------------------------------------
-            Updating Pip Packages
--------------------------------------------------------------------------
-"
-    alacritty --command  pip list --outdated --format=freeze | awk -F"==" '{print $1}' | xargs -i pip install -U {}
-
-}
 # this will update the conda environments
 function update_conda() 
 {
@@ -89,7 +73,7 @@ function update_conda()
             Updating Conda Packages
 -------------------------------------------------------------------------
 "
-    alacritty --command conda update --all --y
+    conda update --all --y
 }
 
 # this will update the paru packages
@@ -104,9 +88,10 @@ function update_paru()
             Updating Paru Packages
 -------------------------------------------------------------------------
 "    
-        alacritty --command  paru -Syyu --noconfirm --needed
+        paru -Syyu --noconfirm --needed
     fi
 }
+
 # THis will update the yay packages
 function update_yay()
 {
@@ -120,7 +105,7 @@ function update_yay()
 -------------------------------------------------------------------------
 "  
     #Updating the yay Packages  
-    alacritty --command    yay -Syyu --noconfirm --needed
+    yay -Syyu --noconfirm --needed
     fi
 }
 

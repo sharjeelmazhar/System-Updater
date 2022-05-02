@@ -111,7 +111,7 @@ function debian_update()
             Updating System Packages
 -------------------------------------------------------------------------
 "
-    alacritty --command sudo apt-get update -y 
+    sudo apt-get update -y 
     
     clear_Screen
     
@@ -120,7 +120,7 @@ function debian_update()
             Upgrading System Packages
 -------------------------------------------------------------------------
 "
-    alacritty --command sudo apt upgrade -y 
+    sudo apt upgrade -y 
 
     # For more package to update add here 
   
@@ -180,7 +180,7 @@ function update_pacman()
 -------------------------------------------------------------------------
 " 
     #Updating the pacman Pacages  
-    alacritty --command sudo pacman -Syyu --noconfirm --needed
+    sudo pacman -Syyu --noconfirm --needed
 
 }
 
@@ -195,7 +195,7 @@ function startup()
 {
     
     # Giving the sudo privileges
-    # remove_sudo
+    remove_sudo
     
     # check root privileges
     root
