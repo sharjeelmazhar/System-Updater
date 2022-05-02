@@ -178,7 +178,7 @@ function startup()
 {
     
     # Giving the sudo privileges
-    remove_sudo
+    # remove_sudo
     
     # check root privileges
     root
